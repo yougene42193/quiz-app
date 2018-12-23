@@ -1,0 +1,55 @@
+body * {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opening {
+    text-align: center;
+}
+
+ul li {
+    list-style: none;
+}
+
+h1 {
+    margin-top: 200px;
+    margin-bottom: 50px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header ul {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.question {
+    position: relative;
+    padding-right: 100px;
+    right: 50px;
+}
+
+.startButton {
+    padding: 20px 60px 20px 60px;
+    margin-top: 200px;
+}
+
+@media only screen and (min-width: 700px) {
+    h1 {
+        font-size: 50px;
+        padding-top: 100px;
+    }
+
+    header ul {
+        font-size: 30px;
+    }
+
+    .startButton {
+        padding: 30px 70px 30px 70px;
+    }
+}
