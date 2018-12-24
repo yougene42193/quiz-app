@@ -1,7 +1,7 @@
 'use strict';
 const STORE = [
   {
-    question: 'Stephen Curry currently holds the 1st, 2nd and 3rd spots for 3 pointers made in a season. Who hold the number 4 spot for 3 pointers made in a season?',
+    question: 'Stephen Curry currently holds the 1st, 2nd and 3rd spots for 3 pointers made in a season. Who holds the number 4 spot?',
     answer: [
       'Ray Allen',
       'Larry Bird',
