@@ -149,6 +149,34 @@ function renderQuestion() {
   $('.js-quizForm').html(questionAnswers);
 }
 
+function handleQuestionTracker() {
+
+}
+
+function handleScoreCount() {
+
+}
+
+function handleCorrectAnswer() {
+
+}
+
+function handleWrongAnswer() {
+
+}
+
+function handleNextQuestion () {
+
+}
+
+function handleResults() {
+
+}
+
+function handleReset() {
+
+}
+
 function generateQuiz() {
   startQuizButton();
   renderQuestion();
