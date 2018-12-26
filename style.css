@@ -48,10 +48,6 @@ header ul {
     display: none;
 }
 
-.js-quizForm form {
-    display: none;
-}
-
 form {
     width: 50%;
     border: 1px solid black;
