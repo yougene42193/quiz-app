@@ -102,84 +102,137 @@ const STORE = [
   },
 ];
 
-let currentQuestionNum = 0;
-let currentScore = 0;
+let questionNum = 0;
+let scoreNum = 0;
 
 function startQuizButton() {
-  $('button').on('click', function(event) {
+  $('button').on('click', function() {
     $('.opening').remove();
     $('.js-quizForm').css('display', 'block');
-    $('form:nth-child(1)').css('display', 'block');
+    $('.questionNum').text(1);
+    handleQuestionTracker();
   });
 }
 
-function generateQuizList(item) {
+function generateQuizList() {
+  if (questionNum < STORE.length) {
   return `
-  <form>
-    <label class="questionString">${item.question}</label>
-    <label class="answerChoice">
-      <input type="radio" value="${item.answer[0]}" name="answer" required />
-      <span class="answer">${item.answer[0]}</span>
-    </label>
-    <label class="answerChoice">
-      <input type="radio" value="${item.answer[1]}" name="answer" />
-      <span class="answer">${item.answer[1]}</span>
-    </label>
-    <label class="answerChoice">
-      <input type="radio" value="${item.answer[2]}" name="answer" />
-      <span class="answer">${item.answer[2]}</span>
-    </label>
-    <label class="answerChoice">
-      <input type="radio" value="${item.answer[3]}" name="answer" />
-      <span class="answer">${item.answer[3]}</span>
-    </label>
-    <p class="rightAnswer">${item.rightAnswer}</p>
-    <button type="button" class="submitButton">Submit</button>
-  </form>`;
-}
-
-function generateQuizString(quizAnswer) {
-  console.log('Generating question element');
-  const items = quizAnswer.map(item => generateQuizList(item));
-  return items.join('');
+  <div class="question-${questionNum}">
+    <label class="questionString">${STORE[questionNum].question}</label>
+    <form>
+      <fieldset>
+        <label class="answerChoice">
+          <input type="radio" value="${STORE[questionNum].answer[0]}" name="answer" required />
+          <span class="answer">${STORE[questionNum].answer[0]}</span>
+        </label>
+        <label class="answerChoice">
+          <input type="radio" value="${STORE[questionNum].answer[1]}" name="answer" />
+          <span class="answer">${STORE[questionNum].answer[1]}</span>
+        </label>
+        <label class="answerChoice">
+          <input type="radio" value="${STORE[questionNum].answer[2]}" name="answer" />
+          <span class="answer">${STORE[questionNum].answer[2]}</span>
+        </label>
+        <label class="answerChoice">
+          <input type="radio" value="${STORE[questionNum].answer[3]}" name="answer" />
+          <span class="answer">${STORE[questionNum].answer[3]}</span>
+        </label>
+        <p class="rightAnswer">${STORE[questionNum].rightAnswer}</p>
+        <button type="submit" class="submitButton">Submit</button>
+      </fieldset>
+    </form>
+  </div>`;
+  } else {
+    handleResults();
+    $('.questionNum').text(10)
+  }
 }
 
 function renderQuestion() {
-  const questionAnswers = generateQuizString(STORE);
-  $('.js-quizForm').html(questionAnswers);
+  $('.js-quizForm').html(generateQuizList());
 }
 
 function handleQuestionTracker() {
-
+// when clicking the next button 
+// responsible for increasing the question value by increments of 1
+// in the html .questionNum
+  console.log('Handle Question Trackers, Working');
+  questionNum ++;
+  $('.questionNum').text(questionNum);
 }
 
 function handleScoreCount() {
-
+// if the answer is correct
+// increase the scoreNum value by increments of 1
+// and display it on the html .scoreNum
+  console.log('Updated Score Count');
+  $('.scoreNum').text(scoreNum + 100);
+  
 }
 
-function handleCorrectAnswer() {
-
+function handleSubmitAnswer() {
+  // when clicking the submitButton
+  // if the answer is equal to correct answer
+  // display generateCorrectAnswer and update score
+  // if the answer is not equal to correct answer
+  // display generateWrongAnswer
+  $('form').on('submit', function() {
+    console.log('Submit working');
+    event.preventDefault();
+    let answer = $('input[type=radio][name=answer]:checked').val();
+    let correctAnswer = `${STORE[questionNum].rightAnswer}`;
+    if (answer === correctAnswer) {
+      generateCorrectAnswer();
+      handleScoreCount();
+    } else {
+      generateWrongAnswer();
+      console.log(answer);
+      console.log(correctAnswer)
+    }
+  });
 }
 
-function handleWrongAnswer() {
-
+function generateCorrectAnswer() {
+  // generate a new html display for the correct answer
+  $('.js-quizForm').html('<div class="correctAnswer"><p>Swish!</p><button type="button" class="nextButton">Next</button></div>');
 }
 
-function handleNextQuestion () {
+function generateWrongAnswer() {
+  // generate a new html display for the incorrect answer
+  // then display the correct answer
+  $('.js-quizForm').html(`<div class="wrongAnswer"><p>Air Ball</p><p>The correct answer is ${STORE[questionNum].rightAnswer}</p><button type="button" class="nextButton">Next</button></div>`);
+}
 
+function handleNextQuestion() {
+  // when clicking the next button
+  // if the question number is less then 10
+  // move to the next question
+  // if the question number is greater then 10
+  // go to results
+  $('main').on('click', '.nextButton',function() {
+    console.log('Going to next question');
+    handleQuestionTracker();
+    renderQuestion();
+    handleSubmitAnswer();
+  });
 }
 
 function handleResults() {
-
+  // display html with results of the quiz with the score
+  if (score >= 700) {
+    $('.js-quizForm').html(`<div class='results correctFeedback'>`)
+  }
 }
 
 function handleReset() {
-
+  // when clicking the reset button go back to the beginning of the quiz
 }
 
 function generateQuiz() {
   startQuizButton();
   renderQuestion();
+  handleSubmitAnswer();
+  handleNextQuestion();
 }
 
 $(generateQuiz);
