@@ -144,6 +144,7 @@ function generateQuizList() {
   </div>`;
   } else {
     handleResults();
+    $('.questionNum').text(10);
   }
 }
 
@@ -220,15 +221,20 @@ function handleNextQuestion() {
 
 function handleResults() {
   // display html with results of the quiz with the score
-  if (score >= 7) {
-    $('.js-quizForm').html(`<div class='results correctFeedback'>`)
-  } else {
-    $('.js-quizForm').html()
-  }
+  $('.js-quizForm').html(`
+    <div class="resultsPage">
+      <h3>Final Score: ${scoreNum}/10</h3>
+      <button type="reset" class="resetButton">Another round?</button>
+    </div>`
+  );
 }
 
 function handleReset() {
   // when clicking the reset button go back to the beginning of the quiz
+  $('main').on('click', '.resetButton', function() {
+    console.log('reset working');
+    location.reload();
+  });
 }
 
 function generateQuiz() {
@@ -236,7 +242,7 @@ function generateQuiz() {
   renderQuestion();
   handleSubmitAnswer();
   handleNextQuestion();
+  handleReset();
 }
 
 $(generateQuiz);
-console.log(STORE.length)
