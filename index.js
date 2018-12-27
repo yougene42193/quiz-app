@@ -106,11 +106,11 @@ let questionNum = 0;
 let scoreNum = 0;
 
 function startQuizButton() {
-  $('button').on('click', function() {
+  $('.startButton').on('click', function() {
+    console.log('Starting Quiz');
     $('.opening').remove();
     $('.js-quizForm').css('display', 'block');
     $('.questionNum').text(1);
-    handleQuestionTracker();
   });
 }
 
@@ -144,7 +144,6 @@ function generateQuizList() {
   </div>`;
   } else {
     handleResults();
-    $('.questionNum').text(10)
   }
 }
 
@@ -158,7 +157,7 @@ function handleQuestionTracker() {
 // in the html .questionNum
   console.log('Handle Question Trackers, Working');
   questionNum ++;
-  $('.questionNum').text(questionNum);
+  $('.questionNum').text(questionNum+1);
 }
 
 function handleScoreCount() {
@@ -166,8 +165,8 @@ function handleScoreCount() {
 // increase the scoreNum value by increments of 1
 // and display it on the html .scoreNum
   console.log('Updated Score Count');
-  $('.scoreNum').text(scoreNum + 100);
-  
+  scoreNum ++;
+  $('.scoreNum').text(scoreNum);
 }
 
 function handleSubmitAnswer() {
@@ -194,12 +193,14 @@ function handleSubmitAnswer() {
 
 function generateCorrectAnswer() {
   // generate a new html display for the correct answer
+  console.log('Answer is correct');
   $('.js-quizForm').html('<div class="correctAnswer"><p>Swish!</p><button type="button" class="nextButton">Next</button></div>');
 }
 
 function generateWrongAnswer() {
   // generate a new html display for the incorrect answer
   // then display the correct answer
+  console.log('Answer is incorrect');
   $('.js-quizForm').html(`<div class="wrongAnswer"><p>Air Ball</p><p>The correct answer is ${STORE[questionNum].rightAnswer}</p><button type="button" class="nextButton">Next</button></div>`);
 }
 
@@ -219,8 +220,10 @@ function handleNextQuestion() {
 
 function handleResults() {
   // display html with results of the quiz with the score
-  if (score >= 700) {
+  if (score >= 7) {
     $('.js-quizForm').html(`<div class='results correctFeedback'>`)
+  } else {
+    $('.js-quizForm').html()
   }
 }
 
@@ -236,3 +239,4 @@ function generateQuiz() {
 }
 
 $(generateQuiz);
+console.log(STORE.length)
