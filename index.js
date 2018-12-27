@@ -118,9 +118,9 @@ function generateQuizList() {
   if (questionNum < STORE.length) {
   return `
   <div class="question-${questionNum}">
-    <label class="questionString">${STORE[questionNum].question}</label>
     <form>
       <fieldset>
+        <label class="questionString">${STORE[questionNum].question}</label>
         <label class="answerChoice">
           <input type="radio" value="${STORE[questionNum].answer[0]}" name="answer" required />
           <span class="answer">${STORE[questionNum].answer[0]}</span>
@@ -195,14 +195,14 @@ function handleSubmitAnswer() {
 function generateCorrectAnswer() {
   // generate a new html display for the correct answer
   console.log('Answer is correct');
-  $('.js-quizForm').html('<div class="correctAnswer"><p>Swish!</p><button type="button" class="nextButton">Next</button></div>');
+  $('.js-quizForm').html('<div class="answerFeedback"><h2>Swish!</h2><img src="https://thumbs.gfycat.com/ImperfectSentimentalCoot-small.gif" alt="westbrook 3"/><p><button type="button" class="nextButton">Next</button></p></div>');
 }
 
 function generateWrongAnswer() {
   // generate a new html display for the incorrect answer
   // then display the correct answer
   console.log('Answer is incorrect');
-  $('.js-quizForm').html(`<div class="wrongAnswer"><p>Air Ball</p><p>The correct answer is ${STORE[questionNum].rightAnswer}</p><button type="button" class="nextButton">Next</button></div>`);
+  $('.js-quizForm').html(`<div class="answerFeedback"><h2>Air Ball</h2><img src="https://media1.tenor.com/images/e5b8c650ed7911a48b6d0242f326f73c/tenor.gif?itemid=5343086" alt="airball gif"/><p>The correct answer is ${STORE[questionNum].rightAnswer}</p><p><button type="button" class="nextButton">Next</button></p></div>`);
 }
 
 function handleNextQuestion() {
@@ -223,7 +223,7 @@ function handleResults() {
   // display html with results of the quiz with the score
   $('.js-quizForm').html(`
     <div class="resultsPage">
-      <h3>Final Score: ${scoreNum}/10</h3>
+      <h2>Final Score: ${scoreNum}/10</h2>
       <button type="reset" class="resetButton">Another round?</button>
     </div>`
   );
