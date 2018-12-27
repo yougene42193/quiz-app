@@ -23,6 +23,8 @@ h1 {
     margin-top: 150px;
     margin-bottom: 50px;
     font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: rgba(255, 166, 0, 0.7);
 }
 
@@ -88,11 +90,11 @@ fieldset {
     text-align: left;
     display: block;
     position: relative;
-    margin-top: 40px;
-    margin-left: 20px;
+    margin-top: 20px;
     font-size: 20px;
     background-color: black;
     color: orange;
+    padding: 10px;
 }
 
 .rightAnswer {
@@ -128,6 +130,11 @@ form, .submitButton {
     border: 2px solid orange;
 }
 
+.submitButton:hover {
+    background-color: orange;
+    color: black;
+}
+
 h2 {
     font-size: 50px;
 }
@@ -147,7 +154,20 @@ h2 {
 
 .resultsPage {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 20px;
+    background-color: rgba(247, 247, 247, 0.7);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 90%;
+}
+
+.resultsPage p {
+    font-size: 20px;
+}
+
+.resultsPage img {
+    height: 200px;
+    width: 300px;
 }
 
 .resetButton {
@@ -159,10 +179,17 @@ h2 {
     border: 2px solid orange;
 }
 
+.resetButton:hover {
+    background-color: orange;
+    color: black;
+}
+
 @media only screen and (min-width: 700px) {
     h1 {
         font-size: 50px;
-        padding-top: 100px;
+        margin-top: 220px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     header ul {
@@ -187,6 +214,15 @@ h2 {
         background-color: beige;
     }
     
+    .answerFeedback {
+        margin-top: 50px;
+        width: 70%;
+    }
+
+    .answerFeedback p {
+        font-size: 25px;
+    }
+
     .questionString {
         text-align: left;
         font-size: 40px;
@@ -197,7 +233,6 @@ h2 {
         display: block;
         position: relative;
         margin-top: 40px;
-        margin-left: 20px;
         font-size: 30px;
         background-color: black;
         color: orange;
@@ -212,5 +247,27 @@ h2 {
         background-color: black;
         color: orange;
         border: 2px solid orange;
+    }
+
+    .resultsPage {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    form {
+        width: 50%;
+    }
+
+    .question {
+        margin-right: 700px;
+    }
+
+    .answerFeedback {
+        width: 50%;
+    }
+
+    .resultsPage {
+        width: 50%;
     }
 }

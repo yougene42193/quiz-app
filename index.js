@@ -221,12 +221,25 @@ function handleNextQuestion() {
 
 function handleResults() {
   // display html with results of the quiz with the score
-  $('.js-quizForm').html(`
-    <div class="resultsPage">
-      <h2>Final Score: ${scoreNum}/10</h2>
-      <button type="reset" class="resetButton">Another round?</button>
-    </div>`
-  );
+  if (scoreNum >= 7) {
+    $('.js-quizForm').html(`
+      <div class="resultsPage">
+        <h2>Final Score: ${scoreNum}/10</h2>
+          <p>Great Job!</p>
+          <img src="https://i.gifer.com/j56.gif" alt="finals win gif"/>
+        <p><button type="reset" class="resetButton">Another round?</button></p>
+      </div>`
+    );
+  } else {
+    $('.js-quizForm').html(`
+      <div class="resultsPage">
+        <h2>Final Score: ${scoreNum}/10</h2>
+          <p>Not bad but not quite there yet!</p>
+          <img src="https://media.giphy.com/media/9t6xpYZ9npJmM/giphy.gif" alt="alonzo gif"/>
+        <p><button type="reset" class="resetButton">Another round?</button></p>
+      </div>`
+    );
+  }
 }
 
 function handleReset() {
