@@ -207,10 +207,7 @@ function generateWrongAnswer() {
 
 function handleNextQuestion() {
   // when clicking the next button
-  // if the question number is less then 10
   // move to the next question
-  // if the question number is greater then 10
-  // go to results
   $('main').on('click', '.nextButton',function() {
     console.log('Going to next question');
     handleQuestionTracker();
