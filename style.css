@@ -4,6 +4,10 @@ body * {
     margin-right: auto;
 }
 
+.answerChoice, button {
+    cursor: pointer;
+}
+
 html,body
 {
     height: 100%;
